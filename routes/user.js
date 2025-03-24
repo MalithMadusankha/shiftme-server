@@ -1,6 +1,6 @@
 import { Router } from "express";
 import userServices from "../services/user.js";
-
+import { apiCall } from "../helper/consoleLog.js";
 const router = Router();
 
 /**
@@ -29,6 +29,7 @@ const router = Router();
  *         description: Bad Request if data is incomplete
  */
 router.post("/", async (req, res) => {
+  apiCall("Creating a new user");
   const { name, email } = req.body;
   const response = await userServices.createUser(name, email);
   res.json(response);
@@ -61,6 +62,7 @@ router.post("/", async (req, res) => {
  *                     example: johndoe@example.com
  */
 router.get("/", async (req, res) => {
+  apiCall("Fetching all users");
   const response = await userServices.fetchUsers();
   res.json(response);
 });
@@ -86,6 +88,7 @@ router.get("/", async (req, res) => {
  *         description: User not found
  */
 router.delete("/:id", async (req, res) => {
+  apiCall("Deleting a user");
   const { id } = req.params;
   const response = await userServices.deleteUser(id);
   res.json(response);
@@ -127,6 +130,7 @@ router.delete("/:id", async (req, res) => {
  *         description: User not found
  */
 router.put("/:id", async (req, res) => {
+  apiCall("Updating a user");
   const { id } = req.params;
   const { name, email } = req.body;
   const response = await userServices.editUser(id, name, email);
@@ -168,6 +172,7 @@ router.put("/:id", async (req, res) => {
  *         description: User not found
  */
 router.get("/:id", async (req, res) => {
+  apiCall("Fetching a user by ID");
   const { id } = req.params;
   const response = await userServices.fetchUser(id);
   res.json(response);

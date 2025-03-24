@@ -11,8 +11,6 @@ docker-compose.yml
 # Ignore the .git directory
 .git/
 
-# Ignore environment variable files
-.env
 
 # Ignore IDE files (VSCode, JetBrains, etc.)
 .vscode/

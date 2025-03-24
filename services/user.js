@@ -1,8 +1,11 @@
-import { sql } from "../db.js";
+import { query } from "../db.js";
 
 const createUser = async (name, email) => {
   try {
-    await sql`INSERT INTO users (name, email) VALUES (${name}, ${email})`;
+    await query("INSERT INTO users (name, email) VALUES ($1, $2)", [
+      name,
+      email,
+    ]);
     return { message: "User added successfully" };
   } catch (error) {
     return { error: error.message };
@@ -11,8 +14,8 @@ const createUser = async (name, email) => {
 
 const fetchUsers = async () => {
   try {
-    const users = await sql`SELECT * FROM users`;
-    return users;
+    const result = await query("SELECT * FROM users", []);
+    return result.rows;
   } catch (error) {
     return { error: error.message };
   }
@@ -20,7 +23,7 @@ const fetchUsers = async () => {
 
 const deleteUser = async (id) => {
   try {
-    await sql`DELETE FROM users WHERE id = ${id}`;
+    await query("DELETE FROM users WHERE id = $1", [id]);
     return { message: "User deleted successfully" };
   } catch (error) {
     return { error: error.message };
@@ -29,7 +32,11 @@ const deleteUser = async (id) => {
 
 const editUser = async (id, name, email) => {
   try {
-    await sql`UPDATE users SET name = ${name}, email = ${email} WHERE id = ${id}`;
+    await query("UPDATE users SET name = $1, email = $2 WHERE id = $3", [
+      name,
+      email,
+      id,
+    ]);
     return { message: "User updated successfully" };
   } catch (error) {
     return { error: error.message };
@@ -38,8 +45,8 @@ const editUser = async (id, name, email) => {
 
 const fetchUser = async (id) => {
   try {
-    const user = await sql`SELECT * FROM users WHERE id = ${id}`;
-    return user;
+    const result = await query("SELECT * FROM users WHERE id = $1", [id]);
+    return result.rows;
   } catch (error) {
     return { error: error.message };
   }

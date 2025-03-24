@@ -26,5 +26,15 @@ const dbConnectionFailed = (error) => {
   ); // Red error message with a warning emoji
 };
 
+const apiCall = (msg) => {
+  const colors = ["\x1b[36m", "\x1b[32m", "\x1b[33m", "\x1b[35m"]; // Cyan, Green, Yellow, Magenta
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+  console.log(
+    `${randomColor}%s\x1b[0m`,
+    `💡 [API CALL] <==== ${msg}! ====> 🚀`
+  );
+};
+
 // Export the functions
-export { serverRunning, dbConnected, dbConnectionFailed };
+export { serverRunning, dbConnected, dbConnectionFailed, apiCall };
