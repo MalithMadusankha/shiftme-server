@@ -1,4 +1,5 @@
 import { query } from "../db.js";
+import { errorLog } from "../helper/consoleLog.js";
 
 const createUser = async (name, email) => {
   try {
@@ -8,6 +9,7 @@ const createUser = async (name, email) => {
     ]);
     return { message: "User added successfully" };
   } catch (error) {
+    errorLog(error.message);
     return { error: error.message };
   }
 };
@@ -17,6 +19,7 @@ const fetchUsers = async () => {
     const result = await query("SELECT * FROM users", []);
     return result.rows;
   } catch (error) {
+    errorLog(error.message);
     return { error: error.message };
   }
 };
@@ -26,6 +29,7 @@ const deleteUser = async (id) => {
     await query("DELETE FROM users WHERE id = $1", [id]);
     return { message: "User deleted successfully" };
   } catch (error) {
+    errorLog(error.message);
     return { error: error.message };
   }
 };
@@ -39,6 +43,7 @@ const editUser = async (id, name, email) => {
     ]);
     return { message: "User updated successfully" };
   } catch (error) {
+    errorLog(error.message);
     return { error: error.message };
   }
 };
@@ -48,6 +53,7 @@ const fetchUser = async (id) => {
     const result = await query("SELECT * FROM users WHERE id = $1", [id]);
     return result.rows;
   } catch (error) {
+    errorLog(error.message);
     return { error: error.message };
   }
 };

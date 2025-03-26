@@ -1,6 +1,6 @@
 import express from "express";
 import { createTables } from "../services/dbSetup.js"; // Import the function
-import { apiCall } from "../helper/consoleLog.js";
+import { apiCall, errorLog } from "../helper/consoleLog.js";
 
 const router = express.Router();
 

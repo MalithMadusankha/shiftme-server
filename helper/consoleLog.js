@@ -36,5 +36,9 @@ const apiCall = (msg) => {
   );
 };
 
+const errorLog = (msg) => {
+  console.log("\x1b[31m%s\x1b[0m", `❌ ${msg} 🚨`); // Red error message with a warning emoji
+};
+
 // Export the functions
-export { serverRunning, dbConnected, dbConnectionFailed, apiCall };
+export { serverRunning, dbConnected, dbConnectionFailed, apiCall, errorLog };
