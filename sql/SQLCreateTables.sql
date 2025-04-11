@@ -62,15 +62,6 @@ CREATE TABLE Shift (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
-
--- Shift Table
-CREATE TABLE Shift (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    branch_id INT REFERENCES Branch(id) ON DELETE CASCADE,
-    created_at TIMESTAMP DEFAULT NOW()
-);
-
 -- Employee_Shift (Many-to-Many)
 CREATE TABLE Employee_Shift (
     employee_id VARCHAR(255) REFERENCES Employee(emp_no) ON DELETE CASCADE,

@@ -1,5 +1,10 @@
 // defaultRoute.js
-export const defaultRoute = (req, res) => {
+import { Router } from "express";
+import { apiCall } from "../helper/consoleLog.js";
+
+const router = Router();
+
+const defaultRoute = (req, res) => {
   res.send(`
       <html>
         <head>
@@ -36,3 +41,10 @@ export const defaultRoute = (req, res) => {
       </html>
     `);
 };
+
+router.get("/", async (req, res) => {
+  apiCall("Call Default Route");
+  defaultRoute(req, res);
+});
+
+export default router;

@@ -1,12 +1,30 @@
 import { query } from "../db.js";
 import { errorLog } from "../helper/consoleLog.js";
-
-const createUser = async (name, email) => {
+const createUser = async (
+  uid,
+  role,
+  name,
+  email,
+  phone,
+  address,
+  location_latitude,
+  location_longitude
+) => {
   try {
-    await query("INSERT INTO users (name, email) VALUES ($1, $2)", [
-      name,
-      email,
-    ]);
+    await query(
+      `INSERT INTO users (uid, role, name, email, phone, address, location_latitude, location_longitude) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+      [
+        uid,
+        role,
+        name,
+        email,
+        phone,
+        address,
+        location_latitude,
+        location_longitude,
+      ]
+    );
     return { message: "User added successfully" };
   } catch (error) {
     errorLog(error.message);
@@ -34,13 +52,21 @@ const deleteUser = async (id) => {
   }
 };
 
-const editUser = async (id, name, email) => {
+const editUser = async (
+  id,
+  name,
+  phone,
+  address,
+  location_latitude,
+  location_longitude
+) => {
   try {
-    await query("UPDATE users SET name = $1, email = $2 WHERE id = $3", [
-      name,
-      email,
-      id,
-    ]);
+    await query(
+      `UPDATE users 
+       SET name = $1, phone = $2, address = $3, location_latitude = $4, location_longitude = $5
+       WHERE id = $6`,
+      [name, phone, address, location_latitude, location_longitude, id]
+    );
     return { message: "User updated successfully" };
   } catch (error) {
     errorLog(error.message);
@@ -58,7 +84,7 @@ const fetchUser = async (id) => {
   }
 };
 
-const userServices = {
+const UserServices = {
   createUser,
   fetchUsers,
   deleteUser,
@@ -66,4 +92,4 @@ const userServices = {
   fetchUser,
 };
 
-export default userServices;
+export default UserServices;

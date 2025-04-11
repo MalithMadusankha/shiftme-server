@@ -1,13 +1,22 @@
 import { Router } from "express";
 import CompanyServices from "../services/company.js";
 import { apiCall } from "../helper/consoleLog.js";
+
 const router = Router();
+
+/**
+ * @swagger
+ * tags:
+ *   name: Company
+ *   description: Company Management
+ */
 
 /**
  * @swagger
  * /company:
  *   post:
  *     summary: Create a new company
+ *     tags: [Company]
  *     description: Add a new company to the database
  *     requestBody:
  *       required: true
@@ -52,9 +61,10 @@ router.post("/", async (req, res) => {
 
 /**
  * @swagger
- * /company:
+ * company:
  *   get:
  *     summary: Get all companies
+ *     tags: [Company]
  *     description: Retrieve a list of all companies from the database
  *     responses:
  *       200:
@@ -96,6 +106,7 @@ router.get("/", async (req, res) => {
  * /company/{id}:
  *   delete:
  *     summary: Delete a company by ID
+ *     tags: [Company]
  *     description: Remove a company from the database using its ID
  *     parameters:
  *       - name: id
@@ -123,6 +134,7 @@ router.delete("/:id", async (req, res) => {
  * /company/{id}:
  *   put:
  *     summary: Update a company's information
+ *     tags: [Company]
  *     description: Modify the details of an existing company by its ID
  *     parameters:
  *       - name: id
@@ -182,6 +194,7 @@ router.put("/:id", async (req, res) => {
  * /company/{id}:
  *   get:
  *     summary: Get a company by ID
+ *     tags: [Company]
  *     description: Retrieve a specific company from the database by its ID
  *     parameters:
  *       - name: id

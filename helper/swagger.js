@@ -16,6 +16,32 @@ const swaggerDefinition = {
       description: "Local server",
     },
   ],
+  tags: [
+    {
+      name: "User",
+      description: "User Management",
+    },
+    {
+      name: "Employee",
+      description: "Employee Management",
+    },
+    {
+      name: "Driver",
+      description: "Driver Management",
+    },
+    {
+      name: "Company",
+      description: "Company Management",
+    },
+    {
+      name: "Branch",
+      description: "Branch Management",
+    },
+    {
+      name: "Shift",
+      description: "Shift Management",
+    },
+  ],
 };
 
 // Options for swagger-jsdoc

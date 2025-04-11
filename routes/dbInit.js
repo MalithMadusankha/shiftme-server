@@ -6,7 +6,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/init-db:
+ * /db-init:
  *   get:
  *     summary: Initializes the database by creating required tables
  *     description: creates new tables if it is not existing.
